@@ -95,8 +95,36 @@ function CreateOrder() {
             setAboutClass('w-100 error');
         }
 
+        let seller_id = null;
+        try {
+            const response = await fetch(`${backend}/auth/seller/?user_id=${uid}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const rdata = await response.json();
+
+            if (response.status === 200) {
+                if (rdata.status) {
+                    console.log(rdata)
+                    seller_id = rdata.seller_id;
+                }
+            }
+            else if (response.status === 401) {
+                localStorage.removeItem('role');
+                localStorage.removeItem('token');
+                localStorage.removeItem('uid');
+                navigate('/login/');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
         if (success) {
-            let order_url = `${location.origin}/orders/create/?seller_id=${uid}&about=${encodeURIComponent(product_about)}`;
+            let url2 = `/orders/create/?seller_id=${seller_id}&about=${encodeURIComponent(product_about)}`;
+            let order_url = `${location.origin}/?next=${encodeURIComponent(url2)}`;
+            console.log(order_url)
             setCreatedLink(order_url);
         }
     }

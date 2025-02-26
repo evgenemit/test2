@@ -1,6 +1,7 @@
 import './Home.css';
 import Header from '../Header/Header';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import cart_png from '../assets/cart.png';
 import link_png from '../assets/link.png';
 
@@ -8,6 +9,14 @@ import link_png from '../assets/link.png';
 function Home() {
     const role = localStorage.getItem('role');
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        const next = url.searchParams.get('next');
+        console.log('next ', next);
+        navigate(next);
+    }, [])
 
     return (
         <>
