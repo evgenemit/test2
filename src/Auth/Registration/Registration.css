@@ -1,0 +1,44 @@
+#auth-form {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#auth-form input {
+    margin-bottom: .4rem;
+}
+
+#auth-form button {
+    margin-top: .6rem;
+    margin-bottom: .8rem;
+}
+
+#auth-form button:first-child {
+    margin-left: 0;
+}
+
+.reg-chose-role {
+    max-width: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.reg-chose-role button {
+    margin-bottom: .4rem;
+    padding: 1rem;
+}
+
+#auth-form .form-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+#auth-form .form-buttons button:first-child {
+    padding: .6rem .9rem;
+}
+
+#auth-form .form-buttons button:last-child {
+    width: 100%;
+    margin-left: .6rem;
+}
+

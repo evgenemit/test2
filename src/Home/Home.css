@@ -1,0 +1,17 @@
+.home-links-buttons {
+    display: inline-block;
+    padding: 1.4rem;
+    width: calc(100% - 2.8rem);
+    margin-bottom: .8rem;
+}
+
+.home-links-buttons div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.home-links-buttons div span {
+    font-size: 1.4rem;
+    margin-left: 1.4rem;
+}

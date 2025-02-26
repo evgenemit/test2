@@ -1,0 +1,41 @@
+#craete-order-form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#craete-order-form p {
+    margin: 0;
+    margin-bottom: .6rem;
+    font-size: 1rem;
+}
+
+#craete-order-form input,
+#craete-order-form textarea,
+#craete-order-form select {
+    margin-bottom: 1rem;
+}
+
+#craete-order-form .form-buttons a {
+    display: inline-block;
+}
+
+#craete-order-form .form-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-top: .6rem;
+}
+
+#craete-order-form .form-buttons button {
+    margin-left: .6rem;
+}
+
+.craeted-link {
+    display: flex;
+    flex-direction: row;
+}
+
+.craeted-link input {
+    margin-left: .6rem;
+}
