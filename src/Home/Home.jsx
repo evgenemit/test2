@@ -14,8 +14,9 @@ function Home() {
     useEffect(() => {
         const url = new URL(window.location.href);
         const next = url.searchParams.get('next');
-        console.log('next ', next);
-        navigate(next);
+        if (next) {
+            navigate(next);
+        }
     }, [])
 
     return (

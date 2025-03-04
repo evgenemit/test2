@@ -1,3 +1,3 @@
-const backend = 'https://bestsite.alwaysdata.net';
+const backend = 'http://127.0.0.1:8000';
 
 export default backend;

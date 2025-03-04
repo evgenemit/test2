@@ -15,6 +15,7 @@ function Orders() {
     const [orders, setOrders] = useState([]);
     const [completedOrders, setCompletedOrders] = useState([]);
     const [qrStep, setQrStep] = useState(false);
+    const [clientCode, setClientCode] = useState('000000');
 
     useEffect(() => {
 
@@ -28,7 +29,6 @@ function Orders() {
                     }
                 });
                 const rdata = await response.json();
-                console.log(rdata)
                 if (response.status === 200) {
                     if (rdata.status) {
                         setOrders(rdata.orders);
@@ -45,8 +45,34 @@ function Orders() {
                 console.log(error);
             }
         }
+        const getCode = async() => {
+            try {
+                const url = `${backend}/auth/client/?uid=${uid}`
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const rdata = await response.json();
+                if (response.status === 200) {
+                    if (rdata.status) {
+                        setClientCode(rdata.code);
+                    }
+                }
+                else if (response.status === 401) {
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('uid');
+                    navigate('/login/');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
         getOrders();
+        getCode();
 
     }, [])
 
@@ -69,10 +95,10 @@ function Orders() {
                         <div className='qr-small-img'>
                         <QRCode
                             size={'3rem'}
-                            value={'dfgrethfghf 3435'}
+                            value={`${backend}/auth/client/by-code/?code=${clientCode}`}
                         />
                         </div>
-                        <p>Покажите QR-код<br />или назовите код <b>000000</b></p>
+                        <p>Покажите QR-код<br />или назовите код <b>{clientCode}</b></p>
                     </div>
                     {qrStep &&
                         <div className="qr-big">
@@ -80,10 +106,10 @@ function Orders() {
                                 <div className='qr-big-img'>
                                 <QRCode
                                     size={'20rem'}
-                                    value={'dfgrethfghf 3435'}
+                                    value={`${backend}/auth/client/by-code/?code=${clientCode}`}
                                 />
                                 </div>
-                                <p>000000</p>
+                                <p>{clientCode}</p>
                                 <button className='btn-main w-100' onClick={hideQr}>Назад</button>
                             </div>
                         </div>
