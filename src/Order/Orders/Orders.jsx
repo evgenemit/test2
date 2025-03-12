@@ -47,7 +47,7 @@ function Orders() {
         }
         const getCode = async() => {
             try {
-                const url = `${backend}/auth/client/?uid=${uid}`
+                const url = `${backend}/auth/clients/${uid}/`
                 const response = await fetch(url, {
                     method: 'GET',
                     headers: {

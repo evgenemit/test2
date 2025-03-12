@@ -68,7 +68,7 @@ function Registration() {
                 setFirstNameClass('w-100 error');
                 success = false;
             }
-            url = `${backend}/auth/reg/client/`
+            url = `${backend}/auth/clients/`
             data = JSON.stringify({
                 email: email,
                 password: password,
@@ -86,7 +86,7 @@ function Registration() {
                 setAboutClass('w-100 error');
                 success = false;
             }
-            url = `${backend}/auth/reg/seller/`
+            url = `${backend}/auth/sellers/`
             data = JSON.stringify({
                 email: email,
                 password: password,
@@ -100,7 +100,7 @@ function Registration() {
                 setNameClass('w-100 error');
                 success = false;
             }
-            url = `${backend}/auth/reg/point/`
+            url = `${backend}/auth/points/`
             data = JSON.stringify({
                 email: email,
                 password: password,

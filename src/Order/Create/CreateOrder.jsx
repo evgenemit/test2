@@ -25,7 +25,7 @@ function CreateOrder() {
         const getSellerName = async() => {
             try {
                 
-                const response = await fetch(`${backend}/auth/seller/info/?seller_id=${url_seller_id}`, {
+                const response = await fetch(`${backend}/auth/sellers/${url_seller_id}/`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -97,7 +97,7 @@ function CreateOrder() {
 
         let seller_id = null;
         try {
-            const response = await fetch(`${backend}/auth/seller/?user_id=${uid}`, {
+            const response = await fetch(`${backend}/auth/users/${uid}/`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -107,8 +107,8 @@ function CreateOrder() {
 
             if (response.status === 200) {
                 if (rdata.status) {
-                    console.log(rdata)
-                    seller_id = rdata.seller_id;
+                    if (rdata.role === 'sl')
+                        seller_id = rdata.seller_id;
                 }
             }
             else if (response.status === 401) {
